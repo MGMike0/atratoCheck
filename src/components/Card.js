@@ -41,7 +41,7 @@ export default function Card(props) {
 					<h3>{fullName}</h3>
 					<span>ID: {id}</span>
 				</Title>
-				<StatusDropdown status={status} />
+				<StatusDropdown id={id} status={status} />
 			</FlexBox>
 			<FlexBox>
 				<div>

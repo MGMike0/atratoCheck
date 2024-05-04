@@ -16,9 +16,10 @@ export const createUser = async (userInfo) => {
 };
 
 
-export const setStatus = async (id, status) => {
+export const setStatus = async ({ id, status }) => {
+	console.log('algo?', id, status)
 	const response = await axios.put(`${API_URl}/users/${id}`,
-		{ id, status }
+		{ status }
 	);
 
 	return response
