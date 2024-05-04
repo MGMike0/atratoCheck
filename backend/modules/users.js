@@ -13,7 +13,9 @@ const schema = Joi.object({
 
 const getUsers = async (req, res) => {
 	try {
-		res.status(200).json(data);
+		const filteredData = data.filter((us) => !us.deleted)
+
+		res.status(200).json(filteredData);
 	} catch (error) {
 		res.status(404).json({ message: error.message });
 	}
@@ -38,4 +40,41 @@ const addUser = async (req, res) => {
 	}
 }
 
-module.exports = { addUser, getUsers }
+const setStatus = async (req, res) => {
+	try {
+		const { status: newStatus } = req.body
+		const id = parseInt(req.params.id, 10)
+		const index = data.findIndex((user) => { return user.id === id })
+
+		if (index === -1) {
+			res.status(422).json({ message: 'User not found' })
+		}
+		data[index].status = newStatus
+
+		return res.status(200).json({ success: true })
+
+	} catch (error) {
+		res.status(404).json({ message: error.message })
+	}
+}
+
+const deleteUser = async (req, res) => {
+	try {
+		const id = parseInt(req.params.id, 10)
+
+		const index = data.findIndex((user) => { return user.id === id })
+
+		if (index === -1) {
+			res.status(422).json({ message: 'User not found' })
+		}
+
+		data[index].deleted = true
+
+		return res.status(200).json({ success: true })
+
+	} catch (error) {
+		res.status(404).json({ message: error.message })
+	}
+}
+
+module.exports = { addUser, getUsers, setStatus, deleteUser }

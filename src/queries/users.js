@@ -14,3 +14,21 @@ export const createUser = async (userInfo) => {
 
 	return response;
 };
+
+
+export const setStatus = async (id, status) => {
+	const response = await axios.put(`${API_URl}/users/${id}`,
+		{ id, status }
+	);
+
+	return response
+}
+
+
+export const deleteUser = async (id, status) => {
+	const response = await axios.delete(`${API_URl}/users/${id}`,
+		{ id, status }
+	);
+
+	return response
+}

@@ -21,6 +21,10 @@ const Wrapper = styled.div`
 	justify-content: space-evenly;
 `
 
+const Button = styled.button`
+	height: 20px;
+`
+
 
 const SignupSchema = Yup.object().shape({
 	name: Yup.string()
@@ -59,7 +63,7 @@ export default function CreateNewUserModal(props) {
 
 	return (
 		<>
-			<button onClick={openModal}>Open Modal</button>
+			<Button onClick={openModal}>New User</Button>
 			<Modal
 				isOpen={isOpen}
 				onRequestClose={closeModal}

@@ -20,6 +20,7 @@ const Wrapper = styled.div`
 const FlexBox = styled.div`
 	display: flex;
 	justify-content: space-between;
+	gap: 15px;
 `
 
 const Title = styled.div`

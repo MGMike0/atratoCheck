@@ -3,6 +3,12 @@ import React from 'react'
 import { fetchUsers } from '../queries/users'
 import Card from '../components/Card'
 import CreateNewUserModal from '../components/CreateNewUserModal'
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+`
 
 export default function UserDashboard() {
 	const [isOpen, setIsOpen] = React.useState(false);
@@ -16,11 +22,13 @@ export default function UserDashboard() {
 		return <div> Loading </div>
 	}
 	return (<>
-		{data.map((user, index) => (
-			<Card user={user} key={index} />
-		))
-		}
 		<CreateNewUserModal isOpen={isOpen} handleClose={setIsOpen} />
+		<Wrapper>
+			{data.map((user, index) => (
+				<Card user={user} key={index} />
+			))
+			}
+		</Wrapper>
 	</>
 	)
 }

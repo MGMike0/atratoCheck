@@ -1,21 +1,17 @@
 import React from 'react'
-import styled from 'styled-components'
-
-const Wrapper = styled.div`
-
-	background-color: blue;
-	color: white;
-	height: 30px;
-	line-height: 30px;
-	text-align: middle;
-	padding: 0 7px;
-	border-radius: 5px;
-	`
+import { statusOptions } from '../constants';
 
 export default function StatusDropdown(props) {
 	const { status } = props;
+	const handleChange = (v) => {}
 	return (
-		<Wrapper>{status || 'Unknown'} <i>▼</i></Wrapper>
-
-	)
+		<select
+			value={status}
+			onChange={handleChange}
+			options={statusOptions}
+		>
+			{statusOptions.map((e) => (
+				<option value={e.value}>{e.label}</option>
+			))}
+		</select>)
 }
